@@ -38,7 +38,6 @@ class Query(graphene.ObjectType):
         df = pd.read_csv('data.csv')
         data = df.to_dict('records')
         fetched_data = [Data(**d) for d in data]
-        print(fetched_data)
         return fetched_data
 
 schema = graphene.Schema(query=Query)

@@ -10,5 +10,5 @@ echo "-----------------------------------------"
 
 curl -X POST \
   -H "Content-Type: application/json" \
-  --data '{ "query": "{ data(id_cli_cliente : \"some\") { descGaCategoriaProducto } }" }' \
+  --data '{ "query": "{ data(idCliCliente: \"some\") { descGaCategoriaProducto } }" }' \
   $BASE_URL/graphql | jq
