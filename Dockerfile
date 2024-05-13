@@ -14,4 +14,4 @@ RUN pip install -r requirements.txt --upgrade pip
 EXPOSE 8000
 
 # Ejecuta tu script de Python
-CMD ["fastapi", "dev", "graph.py", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["fastapi", "dev", "main.py", "--host", "0.0.0.0", "--port", "8000"]

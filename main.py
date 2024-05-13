@@ -34,13 +34,21 @@ class Data(graphene.ObjectType):
 class Query(graphene.ObjectType):
     data = graphene.List(Data)
 
-    def resolve_data(self, info):
+    def resolve_data(self, info, fc_ingreso_producto_monto = None):
         df = pd.read_csv('data.csv')
         data = df.to_dict('records')
-        return [Data(**d) for d in data]
+        fetched_data = [Data(**d) for d in data]
+        print(fetched_data)
+        return fetched_data
 
 schema = graphene.Schema(query=Query)
 app = FastAPI()
 
-# Registra la ruta para GraphQL
 app.add_route("/graphql", GraphQLApp(schema=schema))
+
+@app.get('/npl')
+async def npl_search(question: str):
+    """This function resolve the NPL search endpoint funcionalities."""
+    return (f'{question}: '
+        'Las ventas de la categoría de productos de belleza como el'
+        ' K1010148001 en el 2020 son por un total de 70 millones.')
